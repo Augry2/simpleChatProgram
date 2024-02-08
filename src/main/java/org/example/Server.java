@@ -37,6 +37,7 @@ public class Server {
                         System.out.println("client: " + messageFromClient);
 
                     }
+
                 } catch (Exception e) {
                     System.out.println("error");
                 }
