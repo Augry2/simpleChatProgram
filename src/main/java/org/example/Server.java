@@ -36,25 +36,24 @@ public class Server {
 
                         System.out.println("client: " + messageFromClient);
 
-                    }
 
+
+                    }
                 } catch (Exception e) {
                     System.out.println("error");
                 }
             });
             threadForReadingMessages.start();
 
-            while (true){
-                System.out.println("enter message: ");
+
+
+            while (true) {
                 String messageToClient = fetch.nextLine();
                 outputWriter.println(messageToClient);
 
                 if (messageToClient.equals("q"))
-                    break;
+                    System.exit(0);
             }
-
-
-
         } catch (Exception e) {
             System.out.println("error");
         }

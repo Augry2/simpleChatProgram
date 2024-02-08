@@ -26,16 +26,32 @@ public class Client {
             BufferedReader inputReader = new BufferedReader(new InputStreamReader(incomingConnection.getInputStream()));
             PrintWriter outputWriter = new PrintWriter(incomingConnection.getOutputStream(), true);
 
+            Thread threadForReadingMessages = new Thread(() -> {
+                try {
+                    while (true){
+                        String messageFromServer = inputReader.readLine();
+                        if (messageFromServer.equals("q"))
+                            System.exit(0);
+
+                        System.out.println("server: " + messageFromServer);
+
+
+
+                    }
+                }catch (Exception e){
+                    System.out.println("error");
+                }
+            });
+            threadForReadingMessages.start();
+
             boolean chat = true;
-            while(chat){
-                System.out.print("enter message: ");
+            while (chat) {
                 String messageToServer = fetch.nextLine();
                 outputWriter.println(messageToServer);
 
                 if (messageToServer.equals("q"))
                     chat = false;
             }
-
         }catch (Exception e){
             System.out.println("error");
         }
